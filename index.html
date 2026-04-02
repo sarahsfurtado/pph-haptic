@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project Title</title>
+  <title>Pneumatic Haptic Simulator for PPH Uterine Tone Training</title>
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
@@ -31,196 +31,1448 @@
   <script src="./components/table-component/table-component.js"></script>
 
   <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-</head>
+
+  <!-- Custom report styling -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f9fa;
+      color: #2d3748;
+      line-height: 1.75;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem;
+      background: #ffffff;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      border-radius: 8px;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      border-bottom: 3px solid #2b6cb0;
+      padding-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #bee3f8;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #2c5282;
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    h5 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-top: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+      text-align: justify;
+      font-size: 0.95rem;
+    }
+
+    /* Acknowledgements */
+    .acknowledgements {
+      background: #f7fafc;
+      border-left: 4px solid #2b6cb0;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .acknowledgements h2 {
+      border-bottom: none;
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #2b6cb0;
+    }
+    .acknowledgements p {
+      font-size: 0.92rem;
+      color: #4a5568;
+      margin-bottom: 0.6rem;
+      text-align: left;
+    }
+    .acknowledgements p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tables */
+    table {
+      margin: 0.75rem 0 1.5rem 0;
+      font-size: 0.9rem !important;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0 !important;
+    }
+    table thead tr {
+      background: #ebf4ff !important;
+    }
+    table th {
+      font-weight: 600;
+      color: #1a365d;
+      padding: 10px 14px !important;
+      border-color: #cbd5e0 !important;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    table td {
+      padding: 8px 14px !important;
+      border-color: #e2e8f0 !important;
+      vertical-align: top;
+    }
+    table tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+    table tbody tr:hover {
+      background: #edf2f7;
+    }
+    p > strong:first-child:last-child,
+    p:has(+ table) > strong {
+      display: block;
+      font-size: 0.9rem;
+      color: #4a5568;
+      margin-top: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Table of Contents */
+    .table-of-content {
+      background: #f7fafc;
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .table-of-content h2 {
+      border-bottom: none;
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+    .table-of-content a {
+      color: #2b6cb0;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .table-of-content a:hover {
+      text-decoration: underline;
+      color: #1a365d;
+    }
+
+    /* References */
+    .references ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    .references li {
+      font-size: 0.88rem;
+      color: #4a5568;
+      margin-bottom: 0.6rem;
+      padding-left: 1.5rem;
+      text-indent: -1.5rem;
+      line-height: 1.6;
+    }
+    .references a {
+      color: #2b6cb0;
+      word-break: break-all;
+    }
+
+    /* Dividers */
+    sl-divider {
+      --spacing: 1.5rem;
+      --color: #e2e8f0;
+    }
+
+    /* Image placeholders */
+    image-component {
+      display: block;
+      margin: 1.25rem 0;
+    }
+
+    /* Material table images */
+    .material-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    team-member img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 50%;
+    }
+  </style></head>
 
 <body>
   <div class="content">
-    <h1>Project Title</h1>
+    <h1>Pneumatic Haptic Simulator for Postpartum Hemorrhage (PPH) Uterine Tone Training</h1>
 
-    <!-- This is the team member component use to display details about your team members -->
+    <!-- Team Members -->
     <div class="team-member-wrapper">
-      <team-member avatar="assets/blackranger.png" name="Black" department="Mechanical Engineering"
-        year="1993"></team-member>
-      <team-member avatar="assets/yellowranger.png" name="Yellow" department="Computer Engineering"
-        year="1993"></team-member>
-      <team-member avatar="assets/redranger.png" name="Red" department="Electrical Engineering"
-        year="1993"></team-member>
-      <team-member avatar="assets/pinkranger.png" name="Pink" department="Biomedical Engineering"
-        year="1993"></team-member>
-      <team-member avatar="assets/blueranger.png" name="Blue" department="Chemical Engineering"
-        year="1993"></team-member>
+      <team-member avatar="assets/profile.png" name="Sarah" department="Biomedical Engineering"
+        year="2026"></team-member>
+      <!-- Add more team members as needed -->
     </div>
 
-    <!-- This is a divide from the shoelace library for aesthetic purpose -->
     <sl-divider></sl-divider>
 
-    <!-- This is the table-of-content component use to define all of the link directly to each section -->
+    <!-- Acknowledgements -->
+    <div class="acknowledgements">
+      <h2>Acknowledgements</h2>
+      <p>
+        I would like to give my heartfelt thanks to my project supervisor, Prof. Khoo, for his
+        guidance and support throughout this journey.
+      </p>
+      <p>
+        I would also like to thank Dr. Arun for the chance to work on this project and collaborate
+        with the National University Hospital, and for providing me with valuable insights and feedback.
+      </p>
+      <p>
+        I would also like to extend my gratitude to Dr Cai and Shi Yong, for supplementing my
+        knowledge on pneumatic systems and assisting me wherever I may require guidance.
+      </p>
+      <p>
+        I would also like to extend my gratitude to my father, for assisting me with the prototype
+        assembly and component procurement.
+      </p>
+      <p>
+        Lastly, I would also like to thank the lab technicians and everyone else who has supported me
+        with their guidance and feedback throughout this journey.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- Table of Contents -->
     <div class="table-of-content">
       <h2>Table of Contents</h2>
       <sl-tree>
+        <sl-tree-item>
+          <a href="#abstract">Abstract</a>
+        </sl-tree-item>
+
         <sl-tree-item expanded>
-          <a href="#section-header-1">1. Section Header 1</a>
+          <a href="#introduction">1. Introduction</a>
           <sl-tree-item>
-            <a href="#sub-section-1-header-1">1.1. Sub-section Header 1</a>
+            <a href="#clinical-background">1.1 Clinical Background</a>
           </sl-tree-item>
           <sl-tree-item>
-            <a href="#sub-section-1-header-2">1.2. Sub-section Header 2</a>
+            <a href="#literature-review">1.2 Literature Review: Existing PPH Training Simulators</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#identified-gap">1.3 Identified Gap</a>
+          </sl-tree-item>
+          <sl-tree-item expanded>
+            <a href="#project-scope">1.4 Design Specification and Value Proposition</a>
+            <sl-tree-item>
+              <a href="#design-rationale">1.4.1 Design Rationale</a>
+            </sl-tree-item>
+            <sl-tree-item>
+              <a href="#project-deliverables">1.4.2 Project Deliverables</a>
+            </sl-tree-item>
           </sl-tree-item>
         </sl-tree-item>
 
         <sl-tree-item expanded>
-          <a href="#section-header-2">2. Section Header 1</a>
+          <a href="#system-development">System Development and Prototyping</a>
+
+          <sl-tree-item expanded>
+            <a href="#phase-1">2. Phase I: Material Characterisation & Hardness Testing</a>
+            <sl-tree-item>
+              <a href="#intro-material">2.1 Introduction to Material Characterisation</a>
+            </sl-tree-item>
+            <sl-tree-item expanded>
+              <a href="#quantitative-analysis">2.2 Quantitative Analysis: Force Measurement and Compression</a>
+              <sl-tree-item>
+                <a href="#firm-analysis">2.2.1 Comparative Analysis of "Firm" State Modalities</a>
+              </sl-tree-item>
+              <sl-tree-item>
+                <a href="#boggy-analysis">2.2.2 Comparative Analysis of "Boggy" State Modalities</a>
+              </sl-tree-item>
+              <sl-tree-item>
+                <a href="#damping-skin">2.2.3 Damping Skin Layers</a>
+              </sl-tree-item>
+            </sl-tree-item>
+            <sl-tree-item>
+              <a href="#phase1-conclusion">2.4 Phase 1 Conclusion and Design Requirements</a>
+            </sl-tree-item>
+          </sl-tree-item>
+
+          <sl-tree-item expanded>
+            <a href="#phase-2-hardware">3. Phase II: Hardware Design & Pneumatic System Prototyping</a>
+            <sl-tree-item>
+              <a href="#system-architecture">3.1 System Architecture</a>
+            </sl-tree-item>
+            <sl-tree-item>
+              <a href="#component-selection">3.2 Component Selection & Justification</a>
+            </sl-tree-item>
+            <sl-tree-item expanded>
+              <a href="#uterus-prototyping">3.3 Pneumatic Uterus Prototyping</a>
+              <sl-tree-item>
+                <a href="#airbag-testing">3.3.1 Air Bag Integrity Testing</a>
+              </sl-tree-item>
+            </sl-tree-item>
+            <sl-tree-item>
+              <a href="#pid-design">3.4 PID Control System Design</a>
+            </sl-tree-item>
+          </sl-tree-item>
+
+          <sl-tree-item expanded>
+            <a href="#phase-2-calibration">4. Phase II: Calibration & Control</a>
+            <sl-tree-item>
+              <a href="#pressure-calibration">4.1 Pressure-to-Hardness Calibration</a>
+            </sl-tree-item>
+            <sl-tree-item>
+              <a href="#pid-tuning">4.2 PID Tuning Methodology</a>
+            </sl-tree-item>
+          </sl-tree-item>
+        </sl-tree-item>
+
+        <sl-tree-item expanded>
+          <a href="#testing">5. Testing, Evaluation & Discussion</a>
           <sl-tree-item>
-            <a href="#sub-section-2-header-1">2.1. Sub-section Header 1</a>
+            <a href="#test-step-response">5.1 Test 1 - Step Response</a>
           </sl-tree-item>
           <sl-tree-item>
-            <a href="#sub-section-2-header-2">2.2. Sub-section Header 2</a>
+            <a href="#test-palpation">5.2 Test 2 - Palpation Disturbance Recovery</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#test-repeatability">5.3 Test 3 - Repeatability</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#user-validation">5.4 User Validation Study</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#challenges">5.5 Challenges & Limitations</a>
+          </sl-tree-item>
+        </sl-tree-item>
+
+        <sl-tree-item expanded>
+          <a href="#value-proposition">6. Discussions</a>
+          <sl-tree-item>
+            <a href="#clinical-value">6.1 Clinical and Educational Value</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#technical-value">6.2 Technical & Scalability Value</a>
+          </sl-tree-item>
+        </sl-tree-item>
+
+        <sl-tree-item expanded>
+          <a href="#conclusion">7. Conclusion</a>
+          <sl-tree-item>
+            <a href="#summary-outcomes">7.1 Summary of Outcomes</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#broader-significance">7.2 Broader Significance</a>
+          </sl-tree-item>
+        </sl-tree-item>
+
+        <sl-tree-item expanded>
+          <a href="#future-works">8. Future Works</a>
+          <sl-tree-item>
+            <a href="#haptic-loop">8.1 Closing the Haptic Feedback Loop</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#hardware-refinements">8.2 Hardware Refinements</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="#expanded-validation">8.3 Expanded Clinical Validation</a>
           </sl-tree-item>
         </sl-tree-item>
 
         <sl-tree-item>
           <a href="#references">References</a>
         </sl-tree-item>
+
+        <sl-tree-item expanded>
+          <a href="appendix.html">Appendix</a>
+          <sl-tree-item>
+            <a href="appendix.html#appendix-a">A: Interview with Clinician</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="appendix.html#appendix-b">B: Manual Bulb Inflation Method</a>
+          </sl-tree-item>
+          <sl-tree-item>
+            <a href="appendix.html#appendix-c">C: Circuit Connections</a>
+          </sl-tree-item>
+        </sl-tree-item>
       </sl-tree>
     </div>
     <sl-divider></sl-divider>
 
+    <!-- ==================== ABSTRACT ==================== -->
+    <div id="abstract">
+      <h2>Abstract</h2>
+      <p>
+        Post Partum Haemorrhage (PPH) caused by uterine atony remains the leading cause of maternal mortality worldwide.
+        It is characterised by its sudden onset and significant blood loss, requiring quick and timely clinical diagnosis
+        through visual blood loss estimation and tactile assessment to its impact. Current PPH training for year 4
+        medical students in Singapore often lacks high-fidelity haptic realism. The reliance on manual inflation bulbs to
+        replicate the transition from a 'boggy' to 'firm' uterus is insufficient in equipping students to identify the
+        accurate state of the uterus at a given time.
+      </p>
+      <p>
+        The project developed two distinct uterine states: "Boggy" (atonic) and "Firm" (contracted) using a closed-loop
+        pneumatic system. Extensive hardness testing was conducted to quantify the tactile signatures of each state.
+        Phase I results identified that under a layer of silicone artificial skin, a soft cricket ball replicated the
+        "firm" state, while a bag of marshmallows replicated the "boggy" state. Phase II results confirmed that an air
+        bladder at 9.0 kPa replicated the "firm" state, while 1.6 kPa replicated the "boggy" state, validated by 6
+        students and a clinical expert.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 1. INTRODUCTION ==================== -->
     <div>
+      <div id="introduction">
+        <h2>1. Introduction</h2>
+      </div>
 
-      <!-- This is an example of what a section might look like -->
-      <div id="section-header-1">
-        <h2> 1. Section Header 1 </h2>
+      <div id="clinical-background">
+        <h3>1.1 Clinical Background</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna
-          aliqua. Tincidunt ornare massa eget egestas. At tellus at urna condimentum mattis pellentesque id nibh tortor.
-          Elementum sagittis vitae et leo duis ut diam. Morbi tristique senectus et netus et malesuada fames.
-          Suspendisse
-          ultrices gravida dictum fusce ut placerat orci. Risus nullam eget felis eget nunc lobortis mattis aliquam
-          faucibus
-          (Brody, 2007). Eget sit amet tellus cras adipiscing enim eu turpis egestas. Aliquet nibh praesent tristique
-          magna
-          sit amet purus. Adipiscing bibendum est ultricies integer quis auctor elit sed. Fermentum et sollicitudin ac
-          orci
-          phasellus egestas tellus rutrum. At in tellus integer feugiat scelerisque varius morbi enim nunc. Volutpat
-          blandit
-          aliquam etiam erat velit scelerisque in. Id diam maecenas ultricies mi eget mauris pharetra et. Nec dui nunc
-          mattis
-          enim ut tellus elementum sagittis vitae.
+          Postpartum Hemorrhage (PPH) is defined by the World Health Organization (WHO) as excessive blood loss of
+          500 mL or more within 24 hours after vaginal birth [1]. It remains the leading cause of indirect maternal
+          mortality worldwide, accounting for approximately 27% of maternal deaths globally [2].
+        </p>
+        <p>
+          Uterine atony is the most common cause of PPH, accounting for approximately 70.6% of cases [2]. In its
+          healthy physiological state, the muscular middle layer of the uterine wall, also known as the myometrium,
+          contracts immediately after the delivery of the placenta. These contractions compress the spinal arteries
+          that previously supplied the placenta to mitigate blood loss. During uterine atony however, the myometrium
+          fails to contract, and remains in its flaccid state. This prevents the natural compression of the blood
+          vessels, which leads to rapid hemorrhaging [3].
+        </p>
+        <p>
+          The main clinical diagnostic tool for identifying uterine atony is through abdominal palpation, which usually
+          lasts for 1 to 2 minutes. A healthy contracted uterus is "firm" and "spherical", about the size of a fist and
+          often compared to the hardness of a cricketball. On the other hand, an atonic uterus is softer and spongier,
+          or more commonly referred to as "boggy", making it difficult to palpate. The timely identification of a
+          "boggy" state uterus sets the motion for life-saving interventions, such as IV oxytocin infusion or bimanual
+          compressions to stimulate the necessary contractions [4].
+        </p>
+        <p>
+          As PPH occurs in approximately 1% to 3% of all deliveries [5], most medical students are unable to encounter
+          a real PPH case, making high-fidelity simulations essential for developing physical diagnostic confidence.
         </p>
       </div>
 
-      <div id="sub-section-1-header-1">
-        <h3>1.1 Sub-section Header 1</h3>
+      <div id="literature-review">
+        <h3>1.2 Literature Review: Existing PPH Training Simulators</h3>
         <p>
-          Ultrices dui sapien eget mi. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit. Dolor purus non enim
-          praesent elementum facilisis. Lacus vestibulum sed arcu non odio euismod lacinia at. Metus aliquam eleifend mi
-          in nulla. Lacus sed viverra tellus in hac habitasse platea. Varius quam quisque id diam vel quam elementum
-          pulvinar. Eleifend quam adipiscing vitae proin sagittis nisl rhoncus. Diam ut venenatis tellus in metus
-          vulputate. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Venenatis lectus magna
-          fringilla
-          urna. In nisl nisi scelerisque eu ultrices. Velit egestas dui id ornare arcu odio ut sem nulla. Quam id leo in
-          vitae. Egestas congue quisque egestas diam in arcu cursus euismod quis. Porttitor leo a diam sollicitudin
-          tempor
-          id eu nisl.
+          The table below shows a summary of the existing commercially available PPH simulators in the market. This
+          analysis highlights a critical gap, where while existing simulators are able to adjust to uterine tones, none
+          are able to create a quantified pressure setpoint, validated against clinical benchmarks, and all of them rely
+          on a manual instructor control for state transitions.
+        </p>
+
+        <!-- Table 1: Comparison of Existing PPH Simulators -->
+        <p><strong>Table 1: Comparison of Existing Commercially Available PPH Simulators</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Simulator</th>
+              <th>Est. Cost (USD)</th>
+              <th>Uterine Atony Simulation</th>
+              <th>Quantified Pressure (kPa)</th>
+              <th>Haptic Validation</th>
+              <th>Instructor Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NOELLE S550/S551 Series [6]</td>
+              <td>~$5,460</td>
+              <td>Yes (software controlled)</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Yes (for tone adjustment)</td>
+            </tr>
+            <tr>
+              <td>MamaNatalie [7]</td>
+              <td>From $260</td>
+              <td>No</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>PPH Trainer P97 PRO [8]</td>
+              <td>~$3,282</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Yes (manual bulb)</td>
+            </tr>
+            <tr>
+              <td>PROMPT Flex PPH Module [9]</td>
+              <td>$1,160–$1,680</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Yes (manual bulb)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="identified-gap">
+        <h3>1.3 Identified Gap</h3>
+        <p>
+          Primary research conducted through interviews with Dr. Arundhati (Senior Consultant, NUH), identifies a
+          crucial gap between current methods of PPH training: medical students frequently struggle to confidently
+          distinguish between a healthy contracted uterus and an atonic (boggy) uterus during abdominal palpation.
+          Current pedagogical tools also significantly contribute to this gap.
+        </p>
+        <p>
+          Traditional PPH training blends theoretical foundation with limited clinical exposure, resulting in heavy
+          reliance on lectures and standard medical textbooks (Appendix A.1). Clinical education often uses vague
+          analogies to describe the hardness of the uterus, with statements such as "cricketball-like" firmness for a
+          healthy uterus and "soft, marshmallow-like texture" for an atonic one (Appendix A.2). Existing simulators lack
+          quantified, validated pressure setpoints, remaining medical dummies and being unable to cross the threshold to
+          precise diagnostic instruments.
+        </p>
+        <p>
+          Manual pneumatic trainers such as those from 3B Scientific, also utilise air deflation bulbs to simulate the
+          feeling of an atonic and contracted uterus (Appendix B). The transition from "boggy" to "firm" however has to
+          be continuously controlled by an instructor. As such, the distinguishing between 'firm' and 'boggy' states are
+          not consistent and repeatable, due to the variability of human exertion, limiting their tactile discrimination.
+        </p>
+        <p>
+          Thus, this report aims to address the lack of realistic automated PPH uterus simulations by determining the
+          exact internal air pressure necessary to replicate each state and validating that the pneumatic system is able
+          to maintain these pressures during clinical palpations, with prototyping and testing of a proof-of-concept
+          prototype.
         </p>
       </div>
 
-      <div id="sub-section-1-header-2">
-        <h3>1.2 Sub-section Header 2</h3>
+      <div id="project-scope">
+        <h3>1.4 Design Specification and Value Proposition</h3>
         <p>
-          Fermentum dui faucibus in ornare quam viverra orci. Donec ultrices tincidunt arcu non sodales. A diam maecenas
-          sed enim ut sem viverra. Semper viverra nam libero justo laoreet sit. Mi sit amet mauris commodo quis. Auctor
-          augue mauris augue neque gravida in fermentum et. Auctor elit sed vulputate mi sit amet. Maecenas pharetra
-          convallis posuere morbi leo urna. Sem nulla pharetra diam sit amet nisl. Id nibh tortor id aliquet lectus.
-          Nibh
-          nisl condimentum id venenatis a condimentum vitae sapien. Convallis posuere morbi leo urna molestie at
-          elementum.
+          The scope of this project is to design and validate a closed-loop pneumatic system capable of replicating the
+          two distinct uterine states for PPH training. Unlike existing trainers that rely on manually inflating bulbs,
+          the system will be able to transition through the PPH states through a Proportional-Integral-Derivative
+          (PID)-controlled air pressure regulation for a repeatable and instructor independent simulation.
+        </p>
+      </div>
+
+      <div id="design-rationale">
+        <h4>1.4.1 Design Rationale</h4>
+        <p>
+          Two alternative solutions were also considered before ultimately selecting the pneumatic system:
+        </p>
+        <p>
+          <strong>1. Vacuum-based dual-chamber approach:</strong> This design pulls a silicone membrane against a rigid
+          internal core to replicate the contraction of the uterus in its firm state, while inflating would replicate
+          the atonic state. However, it required a 3D-printed core and secondary vacuum pump, thus complicating the
+          portable design of the system.
+        </p>
+        <p>
+          <strong>2. Static material swapping (Phase I approach):</strong> This was effective for benchmarking haptic
+          targets, but it reintroduces the manual intervention which this project aims to eliminate.
+        </p>
+        <p>
+          The pneumatic system solution was selected as air functions as a compressible spring, where a single air bag
+          would be able to achieve the full clinically relevant stiffness range through pressure modulation alone. It is
+          also highly repeatable, and removes instructor dependency.
+        </p>
+      </div>
+
+      <div id="project-deliverables">
+        <h4>1.4.2 Project Deliverables</h4>
+        <p>
+          This project is structured across two phases with the following deliverables:
+        </p>
+        <p>
+          <strong>Phase I: Material Characterisation</strong><br>
+          1. Characterise and validate reference materials which can replicate the haptic feel of firm and boggy uterine
+          states, to establish quantitative benchmarks for pneumatic replication.
+        </p>
+        <p>
+          <strong>Phase II: Pneumatic System Development</strong><br>
+          1. Design, construct and conduct testing for a closed-loop pneumatic system that is able to replicate both
+          uterus states at calibrated internal pressures.<br>
+          2. Validate the pneumatic system's haptic realism by conducting blind identification testing and surveys with
+          students.<br>
+          3. Evaluate system performance under simulated stress conditions: (i) Step Response, (ii) Palpation Recovery,
+          (iii) Repeatability.
         </p>
 
-        <!-- This is an example of how you might use the image component -->
-        <image-component tag="image" source="assets/requirement.png"
-          subtitle="Image 1: iDP suggested pathway"></image-component>
+        <!-- FIGURE 1: MISSING — Block Diagram of Solution -->
+        <image-component tag="fig1" source="assets/block_diagram_solution.png"
+          subtitle="Figure 1: Block Diagram of Solution"></image-component>
       </div>
     </div>
 
-
-    <br />
     <br />
     <sl-divider></sl-divider>
+
+    <!-- ==================== SYSTEM DEVELOPMENT AND PROTOTYPING ==================== -->
+    <div id="system-development">
+      <h2>System Development and Prototyping</h2>
+    </div>
+
+    <!-- ==================== 2. PHASE I ==================== -->
     <div>
-      <div id="section-header-2">
-        <h2>2. Section Header 2</h2>
+      <div id="phase-1">
+        <h3>2. Phase I: Material Characterisation & Hardness Testing</h3>
+      </div>
+
+      <div id="intro-material">
+        <h4>2.1 Introduction to Material Characterisation</h4>
         <p>
-          Ornare arcu dui vivamus arcu felis bibendum ut tristique et. Mi proin sed libero enim sed faucibus turpis in
-          eu. Odio ut sem nulla pharetra diam sit. Nibh cras pulvinar mattis nunc sed blandit libero. Lacus sed viverra
-          tellus in hac habitasse platea dictumst vestibulum. At augue eget arcu dictum varius duis. Mauris ultrices
-          eros in cursus turpis massa (Lindberg, 1967). Libero nunc consequat interdum varius sit amet mattis. Ut ornare
-          lectus sit amet est placerat in egestas erat. Elementum curabitur vitae nunc sed. Proin nibh nisl condimentum
-          id venenatis a condimentum vitae sapien (Chamberlin et al., 2008). Vitae tempus quam pellentesque nec nam
-          aliquam sem.
+          To transition from clinical analogies (e.g "marshmallow" and "cricketball" like texture), there is a need to
+          look at the variety of materials available to compare each individual hardness levels into something
+          quantifiable. Materials on the Shore Hardness scale along with their characteristics were investigated, to
+          replicate the haptic simulation of the uterus. With the description provided by Dr Arun for the atonic and
+          contracted uterus, similar materials were prioritised to be procured, with a focus on harder materials for
+          the healthy uterus, and softer materials, for the atonic one.
+        </p>
+
+        <!-- Figure 2: Shore Hardness Scale — image8.png -->
+        <image-component tag="fig2" source="assets/Shore_Hardness_Scale.png"
+          subtitle="Figure 2: Shore Hardness Scale [10]"></image-component>
+
+        <p>
+          To achieve an accurate standard for the internal pressure for the Proportional Integral Derivative (PID)
+          system, the base material must be validated as accurately representing the hardness of the uterus to be
+          accurate before progressing.
+        </p>
+        <p>
+          Materials were subjected to a two-tier evaluation. Quantitative force resistance, measured in Newtons, and
+          Qualitative Realism Scoring on a scale of 1 to 5 by Dr Arun.
+        </p>
+
+        <!-- Table 2: Phase I Material Selection -->
+        <p><strong>Table 2: Phase I Material Selection, Fabrication, and Reasoning</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Material</th><th>Method of Fabrication</th><th>Shore Hardness</th><th>Characteristics</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="assets/mat_soft_cricket.png" alt="Soft Cricket Ball" class="material-img"><br>Soft Cricket Ball</td>
+              <td>Online Procurement</td><td>50/60 Shore A</td>
+              <td>High compressive strength, Viscoelastic cork-rubber core, Good shape retention</td>
+            </tr>
+            <tr>
+              <td><img src="assets/mat_hard_cricket.png" alt="Hard Cricket Ball" class="material-img"><br>Hard Cricket Ball</td>
+              <td>Online Procurement</td><td>60/70 Shore A</td>
+              <td>Very high compressive strength, Viscoelastic cork-rubber core, Good shape retention</td>
+            </tr>
+            <tr>
+              <td><img src="assets/mat_cork.png" alt="Cork" class="material-img"><br>Cork</td>
+              <td>Online Procurement</td><td>55/75 Shore A</td>
+              <td>High compressive strength, Good shape retention</td>
+            </tr>
+            <tr>
+              <td><img src="assets/mat_marshmallows.png" alt="Marshmallows in Bag" class="material-img"><br>Marshmallows in Bag</td>
+              <td>Online Procurement</td><td>10 Shore 00</td>
+              <td>Low density, High compressibility, Viscoelastic behaviour</td>
+            </tr>
+            <tr>
+              <td><img src="assets/mat_latex_glove.jpg" alt="Inflated Latex Glove" class="material-img"><br>Inflated Latex Glove</td>
+              <td>Online Procurement</td><td>N/A</td>
+              <td>High elongation at break, Good elastic recovery</td>
+            </tr>
+            <tr>
+              <td><img src="assets/mat_fake_skin.png" alt="Silicone Fake Skin" class="material-img"><br>Silicone Fake Skin</td>
+              <td>Online Procurement</td><td>20 Shore A</td>
+              <td>High elasticity</td>
+            </tr>
+            <tr>
+              <td><img src="assets/mat_yoga_mat.png" alt="Yoga Mat" class="material-img"><br>Yoga Mat</td>
+              <td>Online Procurement</td><td>25–35 Shore A</td>
+              <td>Durable, slightly flexible</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="quantitative-analysis">
+        <h4>2.2 Quantitative Analysis: Force Measurement and Compression</h4>
+        <p>
+          Force is measured in the material characterisation phase to move from a subjective clinical analogy, to a
+          quantifiable value. In clinical practice, the fundal massage must be firm enough to stimulate the uterus, and
+          gentle enough to avoid causing internal tissue trauma (Appendix A.2). By utilising a Force Sensitive Resistor
+          (FSR) along with an Arduino Circuit Board, the force used to conduct a fundal massage for each uterus state
+          can be measured to incorporate into the PID control system in Phase II, serving as the Process Variable (PV)
+          to adjust the pneumatic system's output. A "firm" uterus must resist high amounts of force with minimal
+          displacement, while a "boggy" uterus should have significantly lower resistance force levels.
+        </p>
+        <p>
+          Apart from the materials to replicate the uterus simulation alone, there is a need to replicate the skin
+          layer surrounding the tissue as it plays a role in the realism aspect of uterus tone identification. As such,
+          the base uterus layer and skin layer needs to be accurate, to gather qualitative feedback from Dr. Arun.
+        </p>
+        <p>
+          The force sensor was placed directly above the skin layer, where the clinical expert will proceed to palpate
+          the uterus for 30 seconds while providing feedback on the accuracy of the haptic simulation.
+        </p>
+
+        <!-- Figure 3: Clinical expert palpation — image9.png -->
+        <image-component tag="fig3" source="assets/Palpation_Set_Up.png"
+          subtitle="Figure 3: Clinical expert performing abdominal palpation over a force sensor, skin layer and haptic benchmark"></image-component>
+
+        <p>
+          The tables below show the results obtained from testing the various materials obtained to simulate uterus
+          tone.
+        </p>
+
+        <!-- Table 4: Quantitative and Qualitative Evaluation -->
+        <p><strong>Table 3: Quantitative and Qualitative Evaluation of Uterus State Modalities</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Participant</th><th>Material</th><th>Force Measured</th><th>Realism Score (1-5)</th><th>Correct ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Dr Arun</td><td>Cork</td><td>297–350 N</td><td>0 (too hard)</td><td>NA</td></tr>
+            <tr><td>Dr Arun</td><td>Hard Cricket Ball</td><td>230–430 N</td><td>3 (a bit too hard)</td><td>Firm</td></tr>
+            <tr><td>Dr Arun</td><td>Soft Cricket Ball</td><td>210–560 N</td><td>4 (ok, good to use, size is okay)</td><td>Firm</td></tr>
+            <tr><td>Dr Arun</td><td>Inflated Glove</td><td>—</td><td>3.5 (good, can be used, too small)</td><td>Boggy</td></tr>
+            <tr><td>Dr Arun</td><td>Marshmallows in bag</td><td>—</td><td>4 (good, can be used, too small)</td><td>Boggy</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Table 5: Skin Layer Modalities -->
+        <p><strong>Table 4: Qualitative Feedback on Skin Layer Modalities</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Participant</th><th>Material</th><th>Force Measured</th><th>Realism Score (1-5)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Dr Arun</td><td>Yoga Mat</td><td>—</td><td>0 (too thick to replicate skin)</td></tr>
+            <tr><td>Dr Arun</td><td>Fake Skin</td><td>—</td><td>4 (depends on situation)</td></tr>
+            <tr><td>Dr Arun</td><td>Leather laptop case</td><td>—</td><td>4 (depends on situation)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="firm-analysis">
+        <h5>2.2.1 Comparative Analysis of "Firm" State Modalities</h5>
+        <p>
+          Replicating the hard and firm nature of a contracted uterus required materials that exhibit low but not zero
+          compliance.
+        </p>
+        <p>
+          <strong>Cork (Score: 0/5):</strong> Cork, a high density material, was rejected immediately. There was a lack
+          of displacement under clinical force levels, thus failing to provide the accurate haptic feedback needed
+          despite the uterus being "firm". It also offers no counter force variability, and as such, is not possible to
+          integrate into the PID system. This mirrors the rejection of hard plastic to replace soft tissue simulation.
+        </p>
+        <p>
+          <strong>Hard Cricket Ball (Score: 3/5):</strong> While the dimensions and size of the material were
+          anatomically correct, there was feedback provided that it lacked the superficial compliance of the uterus
+          muscle. There was an immediate spike in force with close to zero displacement. This material provided an
+          average force range of 230N to 430N. This material was close, but still slightly too hard.
+        </p>
+        <p>
+          <strong>The Soft Cricket Ball (Score: 4/5):</strong> This material was considered the most realistic, due to
+          its thicker layer of twine surrounding the inner core of the cricket ball. Additionally, this material
+          provided the widest force range of 210 to 560N. With the slight give before encountering the core of the
+          cricket ball, it was the most accurate "firm" uterus simulation. By obtaining the compliance of the material
+          under force exerted during the fundal massage, the pneumatic system can more accurately modulate the internal
+          pressure to replicate the uterus tone.
+        </p>
+        <p>
+          Thus, the hardness level of the cricket ball will be used to be replicated through the PID control system.
         </p>
       </div>
 
-      <div id="sub-section-2-header-1">
-        <h3>2.1. Sub-section Header 1</h3>
+      <div id="boggy-analysis">
+        <h5>2.2.2 Comparative Analysis of "Boggy" State Modalities</h5>
         <p>
-          Pellentesque nec nam aliquam sem et tortor consequat. Et netus et malesuada fames ac turpis egestas maecenas.
-          Eu tincidunt tortor aliquam nulla facilisi. Nunc aliquet bibendum enim facilisis gravida. Elementum pulvinar
-          etiam non quam lacus (Moll et al., 2011; Parker & Fox, 2010). Blandit cursus risus at ultrices mi. Arcu dui
-          vivamus arcu felis bibendum ut tristique. Porttitor rhoncus dolor purus non enim praesent elementum facilisis.
-          Mauris in aliquam sem fringilla. Non quam lacus suspendisse faucibus. Tristique senectus et netus et malesuada
-          fames ac. <a href="#image">Link to the image above</a>
+          To replicate the "boggy", soft state of the atonic uterus, the comparison material had to exhibit a low
+          hardness rating and high compliance to pressure.
         </p>
-
-        <!-- This is an example of how you might use the video component -->
-        <video-component tag="rick" source="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          subtitle="Video: Never gonna give you up?"></video-component>
+        <p>
+          <strong>Marshmallow (Score: 4/5):</strong> The marshmallow material was highly rated for its soft and
+          malleable consistency. The haptic feel of the marshmallow was also interchangeable with the inflated glove,
+          noting that this represented the most accurate "boggy" feel. As such, there is a need to investigate the
+          appropriate amount of air utilised in the PID control system for this specific level of resistance.
+        </p>
+        <p>
+          <strong>Inflated Glove (Score: 3.5/5 - 4/5):</strong> The inflated latex glove serves as an initial prototype
+          for the pneumatic approach to replicate the haptic feel of a "boggy" uterus. The glove at first was slightly
+          too small, and did not provide enough resistance when pressure was exerted. The clinical expert tightened a
+          few fingers of the glove, increasing its internal pressure, until the correct feel can be achieved.
+        </p>
+        <p>
+          This trial proved that a "boggy" state can be achieved through pneumatic systems, and there is a need to
+          ensure that the final prototype maintains a low pressure, high compliance state.
+        </p>
       </div>
 
-      <div id="sub-section-2-header-2">
-        <h3>2.2. Sub-section Header 2</h3>
+      <div id="damping-skin">
+        <h5>2.2.3 Damping Skin Layers</h5>
         <p>
-          Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Dignissim convallis aenean et tortor at
-          risus viverra adipiscing. Facilisi nullam vehicula ipsum a arcu cursus. Adipiscing elit pellentesque
-          habitant
-          morbi tristique senectus et netus. Turpis massa tincidunt dui ut ornare lectus. Suspendisse sed nisi lacus
-          sed. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Ut ornare lectus sit amet est
-          placerat in egestas. Magna fringilla urna porttitor rhoncus. Imperdiet dui accumsan sit amet.
+          To create a realistic uterus haptic simulation, the abdominal layer also contributes to the external pressure
+          exerted.
         </p>
+        <p>
+          <strong>Yoga Mat (Score: 0/5):</strong> The high-thickness foam was unsuitable to replicate the layer of skin
+          surrounding the uterus. A layer that is too thick acts as a haptic insulator, limiting the clinician from
+          accurately conducting the fundal massage to identify the uterus.
+        </p>
+        <p>
+          <strong>Fake Skin (Score: 4/5):</strong> The fake skin used for tattoo practice was noted as the most
+          realistic, albeit with varying levels of suitability depending on the thickness of the skin. Furthermore, the
+          fake skin was also selected for its ability to stretch and accommodate the deep palpations from the fundal
+          massage.
+        </p>
+      </div>
 
-        <!-- This is an example of how you might use the table component -->
-        <table-component subtitle="Table: Demo table">
-          <div id="table-1"></div>
-        </table-component>
+      <div id="phase1-conclusion">
+        <h4>2.4 Phase 1 Conclusion and Design Requirements</h4>
+        <p>
+          In conclusion the finalised materials validated for further analysis as the target feel for the pneumatic
+          system for the next stage of prototyping in Phase II consists of the soft cricket ball (4/5, 210–560N), for
+          the "firm" state, and the marshmallow (4/5) for the "boggy" state, while utilising a fake skin overlay.
+        </p>
       </div>
     </div>
 
-    <!-- This is an example of how you can use the references component to create references -->
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 3. PHASE II: HARDWARE ==================== -->
+    <div>
+      <div id="phase-2-hardware">
+        <h3>3. Phase II: Hardware Design & Pneumatic System Prototyping</h3>
+      </div>
+
+      <div id="system-architecture">
+        <h4>3.1 System Architecture</h4>
+        <p>
+          The pneumatic system must inflate and maintain internal pressure to replicate both "firm" (contracted) and
+          "boggy" (atonic) uterine states while withstanding 30 seconds of continuous palpation.
+        </p>
+        <p>
+          To achieve this with the closed-loop PID system, the Arduino Uno will continuously read the current air-bag
+          pressure via an analog pressure sensor (XGZP6847A) and compare it to the target setpoint (9.0 kPa for firm,
+          1.6 kPa for boggy). Based on the error, if any, the PID algorithm will then modulate the PWM output to the
+          DC pump for inflation or solenoid valve for venting excess air, thus driving the internal air pressure to the
+          correct target value. Unlike open-loop systems, the controller continuously adjusts output, even at steady
+          state to compensate for leakage or external disturbances.
+        </p>
+        <p>
+          A critical design requirement to consider is the disruption rejection. When a student applies palpation
+          pressure, the system must respond immediately to maintain the target sensation. This was validated in
+          Section 5.2, where the system was able to recover to the correct set value within 2 seconds, following
+          continuous palpation.
+        </p>
+
+        <!-- Figure 4: Block Diagram PID — image7.png -->
+        <image-component tag="fig4" source="assets/Block_Diagram_Set_Up.png"
+          subtitle="Figure 4: Block Diagram of the closed-loop pneumatic control system architecture"></image-component>
+      </div>
+
+      <div id="component-selection">
+        <h4>3.2 Component Selection & Justification</h4>
+        <p>
+          To control the displacement and speed of the air-tight bag, a closed loop pneumatic control system was devised
+          to vary the air pressure within the uterus. The control system consists of:
+        </p>
+        <p>
+          <strong>i. 6V DC Air Pump:</strong> Selected for its 1300ml/min flow rate, which enables quick transitions,
+          as compared to a peristaltic pump (too slow), or a compressor (too bulky).
+        </p>
+        <p>
+          <strong>ii. Solenoid Valve:</strong> The COM-SOL-007 6V solenoid valve was selected for its fast venting
+          response and two-wire connection for the motor driver connection.
+        </p>
+        <p>
+          <strong>iii. Air Pressure Sensor:</strong> The XGZP6847A 100 kPa piezoresistive sensor was selected to align
+          with the physiological pressure setpoints of the prototype. By utilising the integrated transfer function and
+          10 bit ADC resolution, the system is able to achieve a 0.1 kPa resolution. This is necessary for
+          distinguishing between the two haptic states, which is harder to achieve with a lower resolution sensor like
+          MPX51000.
+        </p>
+        <p>
+          <strong>iv. Motor Driver:</strong> The MOSFET-based TB6612FNG motor driver was selected for its utilisation of
+          up to two input signals, which is key for controlling the DC Air Pump and Solenoid Valve.
+        </p>
+        <p>
+          <strong>v. PE-Film Air Bag:</strong> PE Film was chosen over silicone for its flexibility, compared to the
+          rigidity of silicone. Its low Young's Modulus also ensures that the surface tension of the plastic does not
+          artificially impact the hardness reading at low pressures (boggy state). Heat-sealed PE film is also airtight,
+          creating a seal against leakage, and ensuring internal pressure is able to reach the set threshold set.
+        </p>
+
+        <!-- FIGURE 5: MISSING — Components -->
+        <image-component tag="fig5" source="assets/Components_Setup.png"
+          subtitle="Figure 5: Components Set Up of Pneumatic System Circuit: Arduino Uno, DC Air Pump, Air Pressure Sensor, Solenoid Valve, Air Bag, Motor Driver"></image-component>
+      </div>
+
+      <div id="uterus-prototyping">
+        <h4>3.3 Pneumatic Uterus Prototyping</h4>
+        <p>
+          The uterus comprises a flexible air-tight bag made from PE film, sealed within a layer of silicone skin. The
+          air-tight bag was measured and cut to about 7.5cm long and 5cm wide. A 4 mm silicone tube will be fitted
+          within the air-tight bag with the use of one-touch fitting, connected to a y-connector, to allow the inflow
+          from the DC pump. The hole for the tube will be made by cutting a small notch with scissors and secured with
+          elastic bands and silicone tape, and fortified with quick drying super glue. Hot glue was rejected due to the
+          heat damaging the surrounding materials.
+        </p>
+
+        <!-- FIGURE 6: MISSING — Air Bag Set Up -->
+        <image-component tag="fig6" source="assets/Sealed_AirBag.jpg"
+          subtitle="Figure 6: Sealed Air Bag with One Touch Fitting Attached"></image-component>
+
+        <image-component tag="fig7" source="assets/AirBag_Silicone.jpg"
+          subtitle="Figure 7: Air Bag in Silicone to Replicate Skin Texture"></image-component>
+      </div>
+
+      <div id="airbag-testing">
+        <h5>3.3.1 Air Bag Integrity Testing</h5>
+        <p>
+          Before integrating the Air Bag into the System, the PE-film air bag was tested for leakage to ensure that
+          sufficient pressure was maintained in both states.
+        </p>
+        <p>
+          The air bag was inflated to 15 kPa, which is above the maximum set pressure of 9 kPa, and submerged in water
+          for 60 seconds. Leak points can be identified visually via air bubbles.
+        </p>
+        <p>
+          The initial air bags created exhibited leaks at hot-glue sealed one-touch fitting entry points. After
+          reinforcing the seals with silicone tape and super glue, no air bubbles were observed during the same time
+          period and pressure.
+        </p>
+
+        <!-- Figure 7: Air Bubble Test — image3.jpg -->
+        <image-component tag="fig8" source="assets/Air_Bubble_Testing.jpg"
+          subtitle="Figure 8: Air Bubble Test for Air Bag"></image-component>
+      </div>
+
+      <div id="pid-design">
+        <h4>3.4 PID Control System Design</h4>
+        <p>
+          With reference to Boyle's Law, which states that P₁V₁ = P₂V₂, as air is supplied to a fixed air-bag volume,
+          the internal pressure then rises, resulting in the surface becoming more resistant to further compression.
+          At its firm state, more air supplied results in a higher internal pressure, resulting in the air-bag resisting
+          more applied pressure (palpation), thus matching the cricket ball hardness. Alternatively, at its boggy state,
+          less air supplied results in a lower internal pressure, resulting in the air-bag yielding under palpation, to
+          match the soft marshmallow-like sensation.
+        </p>
+      </div>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 4. CALIBRATION & CONTROL ==================== -->
+    <div>
+      <div id="phase-2-calibration">
+        <h3>4. Phase II: Calibration & Control</h3>
+      </div>
+
+      <div id="pressure-calibration">
+        <h4>4.1 Pressure-to-Hardness Calibration</h4>
+        <p>
+          To determine the accurate pressure to maintain within the air-bag to replicate each uterine state, the
+          bladder was inflated incrementally, while comparing the hardness level against the previously established
+          benchmarks validated in Phase I (soft cricket ball and marshmallow). By palpating the prototype at each 1 kPa
+          interval from 0–15 kPa, and then fine tuning by 0.1 kPa intervals if necessary, the following set points were
+          obtained:
+        </p>
+        <p>
+          <strong>Firm State: 9.0 kPa</strong><br>
+          <strong>Boggy State: 1.6 kPa</strong>
+        </p>
+      </div>
+
+      <div id="pid-tuning">
+        <h4>4.2 PID Tuning Methodology</h4>
+        <p>
+          The PID controller was also adjusted to achieve a stable pressure regulation, without momentarily causing
+          over-inflation to occur.
+        </p>
+
+        <!-- Table 6: PID Parameters -->
+        <p><strong>Table 5: PID Controller Parameters and Function</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Parameter</th><th>Value</th><th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Kp (Proportional)</td><td>6.0</td><td>Immediate correction when palpation causes pressure drop</td></tr>
+            <tr><td>Ki (Integral)</td><td>1.5</td><td>Eliminates steady-state error during sustained massage</td></tr>
+            <tr><td>Kd (Derivative)</td><td>0.8</td><td>Dampens pump response, prevents bouncy overshoot</td></tr>
+            <tr><td>Sample Interval</td><td>30 ms</td><td>Control loop update frequency</td></tr>
+            <tr><td>Min PWM</td><td>80</td><td>Overcomes pump stiction</td></tr>
+            <tr><td>Pressure Ceiling</td><td>30 kPa</td><td>Safety limit to prevent bladder rupture</td></tr>
+          </tbody>
+        </table>
+
+        <p>
+          Anti-windup was implemented by limiting the integral term to ±50. This stops the pump from cycling excessively
+          fast during long error accumulation. The integral resets during state changes to avoid pressure spikes when
+          switching between boggy and firm states.
+        </p>
+        <p>
+          The solenoid opens when pressure > 1.5 kPa above setpoint, and the pump stops at the same time to avoid
+          conflicts. For quick deflation on a boggy command, the solenoid opens fully at PWM 255 with a 10-second
+          safety timeout.
+        </p>
+        <p>
+          In the boggy state, a higher effective Kp of 20.0 was implemented, ensuring faster recovery from palpation,
+          as errors during low pressure states would produce insufficient PWM at the standard Kp.
+        </p>
+      </div>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 5. TESTING ==================== -->
+    <div>
+      <div id="testing">
+        <h2>5. Testing, Evaluation & Discussion</h2>
+      </div>
+
+      <div id="test-step-response">
+        <h3>5.1 Test 1 - Step Response</h3>
+        <p>
+          The pneumatic system inflated the air-bag from 0 kPa to the target setpoint (firm and boggy), and maintained
+          pressure for 30 seconds. Five trials were conducted for each state. The table below shows the average readings
+          obtained.
+        </p>
+
+        <!-- Table 7: Step Response -->
+        <p><strong>Table 6: Test 1: Step Response Performance Summary (n=5 runs)</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Metric</th><th>Firm State (9.0 kPa)</th><th>Boggy State (1.6 kPa)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Rise Time: time taken to reach setpoint</td><td>4.65 ± 0.53 s</td><td>1.43 ± 0.12 s</td></tr>
+            <tr><td>Steady-State Mean: average pressure at steady state</td><td>8.63 ± 0.42 kPa</td><td>1.83 ± 0.00 kPa</td></tr>
+            <tr><td>Steady-State: deviation from setpoint</td><td>−0.37 kPa</td><td>+0.13 kPa</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Figure 8: Step Response Firm — image2.png -->
+        <image-component tag="fig9" source="assets/Test1_Results_Firm.png"
+          subtitle="Figure 9: Test 1: Step Response — Firm State (9.0 kPa Target) over 5 runs"></image-component>
+
+        <!-- Figure 9: Step Response Boggy — image6.png -->
+        <image-component tag="fig10" source="assets/Test1_Results_Boggy.png"
+          subtitle="Figure 10: Test 1: Step Response — Boggy State (1.6 kPa Target) over 5 runs"></image-component>
+
+        <p>
+          To note, the firm state exhibited a consistent steady-state of −0.37 kPa below setpoint. Runs 1 and 2
+          achieved 8.1 kPa while Runs 3–5 achieved 8.9 kPa during firm state testing, which could be due to a battery
+          voltage drop during extended operation, reducing the DC pump's maximum achievable output. The PID anti-windup
+          limit also induces a minor steady-state error, preventing the controller from accumulating sufficient
+          corrective action to fully eliminate small errors. This is a deliberate trade off for the system to not
+          exhibit overshoot during state transitions. Through this analysis, the coupling between battery capacity and
+          integral saturation is demonstrated to reinforce the need for a regulated power supply.
+        </p>
+      </div>
+
+      <div id="test-palpation">
+        <h3>5.2 Test 2 - Palpation Disturbance Recovery</h3>
+        <p>
+          The pneumatic system inflated the air-bag to its firm state at 9.0 kPa, while palpation pressure was applied.
+          The time taken for recovery to occur was then measured and recorded.
+        </p>
+
+        <!-- Figure 10: Palpation Recovery — image4.png -->
+        <image-component tag="fig11" source="assets/Test2_Results.png"
+          subtitle="Figure 11: Test 2: Palpation Disturbance Recovery Response showing pressure and FSR force"></image-component>
+
+        <p>
+          During the palpation, there was a disturbance of about 2.12 kPa. The PID controller detects this error, and
+          increases PWM output from 80 to 140, effectively restoring internal air pressure. After palpation stops, the
+          system rapidly recovers to the setpoint within 2 seconds, demonstrating an effective disturbance rejection,
+          which is suitable for continuous clinical palpation training.
+        </p>
+        <p>
+          <strong>Clinical Relevance:</strong> The 2 second recovery time must be evaluated against clinical palpation
+          frequency. During clinical palpations, clinicians would typically palpate the abdomen at an interval of 1–2
+          seconds. Thus, the recovery time achieved is that of the threshold of clinical realism. While acceptable for
+          students to identify differences in the static states, higher recovery time would make for a more realistic
+          massage simulation. Section 8.2 expands on this limitation.
+        </p>
+      </div>
+
+      <div id="test-repeatability">
+        <h3>5.3 Test 3 - Repeatability</h3>
+        <p>
+          Five consecutive firm-to-boggy cycles were conducted with an 8-second hold time for each state.
+        </p>
+
+        <!-- Table 8: Repeatability -->
+        <p><strong>Table 7: Test 3: Repeatability Data for 5 Cycles of Firm-to-Boggy Transitions</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Metric</th><th>Firm</th><th>Boggy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mean Pressure</td><td>8.87 kPa</td><td>1.84 kPa</td></tr>
+            <tr><td>Standard Deviation</td><td>0.09 kPa</td><td>0.05 kPa</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Figure 11: Repeatability — image1.png -->
+        <image-component tag="fig12" source="assets/Test3_Results.png"
+          subtitle="Figure 12: Test 3: Repeatability — 5 Cycles of Firm-to-Boggy Transitions"></image-component>
+
+        <p>
+          From the results, each state was able to maintain correct internal pressure with little deviation, even with
+          the quick transition between each state. To note, for cycle 1 of the firm state, it was excluded as there was
+          insufficient hold time at the firm state to reach a steady-state internal pressure.
+        </p>
+      </div>
+
+      <div id="user-validation">
+        <h3>5.4 User Validation Study</h3>
+        <p>
+          A haptic study to validate the haptic feel of the prototype was conducted with 6 participants (2 medical
+          students, 4 non-medical students). Each student had no prior PPH training, ensuring that the responses would
+          be unbiased.
+        </p>
+        <p>
+          <strong>i. Briefing:</strong> Participants were given a brief background on PPH, and a quick guide on how to
+          conduct palpations through a video recording of the clinical expert.<br>
+          <strong>ii. Part A (Calibration):</strong> Participants palpated reference materials (cricket ball,
+          marshmallow) under a layer of silicone skin, and the two pneumatic states of the prototype, rating hardness
+          on a 1–10 scale, with 10 being the hardest.<br>
+          <strong>iii. Part B (Blind Test):</strong> Participants identified which pneumatic state matched which
+          reference, without knowing which state was presented to them.<br>
+          <strong>iv. Part C (Likert Survey):</strong> 5-point agreement scale on realism, learning value, and system
+          usability.
+        </p>
+
+        <image-component tag="fig13" source="assets/User_Testing_Setup.png"
+          subtitle="Figure 13: User Testing Set Up"></image-component>
+
+        <p><strong>Hardness Ratings:</strong></p>
+
+        <!-- Table 8: Hardness Ratings -->
+        <p><strong>Table 8: Comparative Hardness Ratings (Mean ± SD)</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Material</th><th>Mean ± SD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Cricket Ball (reference)</td><td>9.00 ± 1.10</td></tr>
+            <tr><td>Pneumatic — Firm (9.0 kPa)</td><td>7.58 ± 0.80</td></tr>
+            <tr><td>Marshmallow (reference)</td><td>3.17 ± 0.41</td></tr>
+            <tr><td>Pneumatic — Boggy (1.6 kPa)</td><td>4.50 ± 0.55</td></tr>
+          </tbody>
+        </table>
+
+        <p>
+          <strong>Blind State Identification:</strong> 100% (6/6) of participants were able to correctly identify the
+          firm state as closer to the cricket ball. 100% (6/6) correctly identified the boggy state as closer to
+          marshmallow. 100% (6/6) could distinguish the two states 'easily'.
+        </p>
+        <p>
+          <strong>Comparison Ratings:</strong><br>
+          Firm vs Cricket Ball: 5/6 (83%) rated 'About Right', 1/6 rated 'Too Soft'.<br>
+          Boggy vs Marshmallow: 4/6 (67%) rated 'About Right', 2/6 rated 'Too Hard'.
+        </p>
+
+        <!-- Table 10: Likert Survey -->
+        <p><strong>Table 9: Participant Likert Survey Results (n=6)</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Statement</th><th>Mean ± SD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>I can clearly distinguish between the two states</td><td>4.83 ± 0.41</td></tr>
+            <tr><td>This simulator would help me learn to identify uterine tone</td><td>4.50 ± 0.84</td></tr>
+            <tr><td>This is more useful than reading about firm vs boggy in a textbook</td><td>5.00 ± 0.00</td></tr>
+            <tr><td>I would feel more confident diagnosing uterine atony after practice</td><td>4.83 ± 0.41</td></tr>
+            <tr><td>The automated state transition is an improvement over existing trainers</td><td>4.67 ± 0.52</td></tr>
+          </tbody>
+        </table>
+
+        <p>
+          From the user testing, it validates the pneumatic system's haptic fidelity is accurate. The 100% blind
+          identification accuracy also validates that the two pneumatic states are distinguishable and can be identified
+          easily. All Likert scores of ≥4.5/5 indicate a strong agreement on realism and learning effectiveness that
+          can be implemented into future PPH training.
+        </p>
+      </div>
+
+      <div id="challenges">
+        <h3>5.5 Challenges & Limitations</h3>
+        <p>
+          <strong>Battery Voltage Depletion:</strong> The 9V battery exhibited a rapid drop in voltage during extended
+          testing sessions. After an accumulated hour of continuous operation, the PWM of the pump decreased
+          considerably, which can be seen from the variance in Test 1 Runs 1 and 2, where steady state is at ~8.1 kPa,
+          and Runs 3 to 5 (conducted with new battery) where steady state is at ~8.9 kPa. To overcome this, the 9V
+          battery could be replaced with a regulated 12V DC power supply.
+        </p>
+        <p>
+          <strong>Pump Noise:</strong> The DC pump produced audible noise at higher PWM cycles (during firm state
+          maintenance), which reduces haptic realism in an official training simulation. This can be resolved by
+          obtaining a quieter pump.
+        </p>
+        <p>
+          <strong>Sample Size:</strong> The user validation study only consisted of 6 participants, which is generally
+          insufficient for statistical generalisation. For more significant statistical validation, a larger cohort
+          would be more ideal, including more participation from clinical experts.
+        </p>
+      </div>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 6. VALUE PROPOSITION ==================== -->
+    <div>
+      <div id="value-proposition">
+        <h2>6. Discussions</h2>
+      </div>
+
+      <div id="clinical-value">
+        <h3>6.1 Clinical and Educational Value</h3>
+        <p>
+          The system removes instructor dependency and human error by fully automating the boggy-to-firm transitions of
+          the uterus without manual bulb control. With the closed-loop pneumatic system supplying consistent, repeatable
+          haptic states for students to practice clinical palpations without variation between sessions, the haptic
+          experience will be consistent across training sessions. This ensures that each student experiences the same
+          calibrated pressure states. This also directly addresses the subjectivity gap previously identified in
+          Section 1.2, as it replaces vague analogies of uterine tone with quantifiable kPa setpoints, validated by a
+          clinical expert.
+        </p>
+        <p>
+          Notably, this is also the first quantifiable pressure-to-hardness benchmark for uterine tone simulation in
+          Singapore, with participants unanimously rating it more useful than textbook learning (5/5).
+        </p>
+      </div>
+
+      <div id="technical-value">
+        <h3>6.2 Technical & Scalability Value</h3>
+        <p>
+          The overall component cost will be less than SGD $50, thus making the pneumatic system accessible and
+          replicable for all medical training institutions. The modular design also allows for the addition of FSR live
+          feedback, fluid loss simulation, and VR overlay without the need to redesign the pneumatic system. The
+          open-source code also allows for the development of new pressure standards based on the current code.
+        </p>
+      </div>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 7. CONCLUSION ==================== -->
+    <div>
+      <div id="conclusion">
+        <h2>7. Conclusion</h2>
+      </div>
+
+      <div id="summary-outcomes">
+        <h3>7.1 Summary of Outcomes</h3>
+        <p>
+          Phase I successfully translated clinical analogies into quantifiable haptic benchmarks, with soft cricket ball
+          (4/5, 210–560N) for the firm state, and marshmallow (4/5) for the boggy state.
+        </p>
+        <p>
+          Phase II confirmed that a pneumatic air bladder alone can replicate both benchmarks at validated pressure
+          setpoints: 9.0 kPa for firm state and 1.6 kPa for boggy state. The closed-loop PID system demonstrated
+          stable pressure regulation at both setpoints, with rise times of 4.65s (firm) and 1.43s (boggy), and recovery
+          from palpation disturbance within 2 seconds.
+        </p>
+        <p>
+          User validation with 6 participants achieved 100% blind identification accuracy, with all Likert scores
+          ≥4.5/5 and a perfect 5.0/5 rating for 'better than textbook'.
+        </p>
+
+        <!-- Table: Summary of deliverables -->
+        <p><strong>Table 10: Summary of Deliverables Achieved</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+          <thead>
+            <tr style="background-color: #f0f0f0;">
+              <th>Deliverable</th><th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1. Material characterisation</td><td>✓ Cricket ball & marshmallow validated as benchmarks</td></tr>
+            <tr><td>2. Closed-loop pneumatic system</td><td>✓ PID-controlled, 9.0/1.6 kPa setpoints achieved</td></tr>
+            <tr><td>3. Haptic validation</td><td>✓ 100% blind identification, 4.08/5 realism</td></tr>
+            <tr><td>4. Performance evaluation</td><td>✓ Step response, recovery, repeatability tested</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="broader-significance">
+        <h3>7.2 Broader Significance</h3>
+        <p>
+          This project establishes the first quantifiable pressure-to-hardness standard for pneumatic uterine tone
+          simulation, providing a reproducible foundation for future PPH training simulations in Singapore, and across
+          the globe. The methodology, which consists of material characterisation, pneumatic calibration, and clinical
+          validation, is also transferable to other haptic simulation challenges in other medical fields. With further
+          development, the system has potential for publication, patent protection, and adoption across NUS medical
+          training curriculum.
+        </p>
+      </div>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== 8. FUTURE WORKS ==================== -->
+    <div>
+      <div id="future-works">
+        <h2>8. Future Works</h2>
+      </div>
+
+      <div id="haptic-loop">
+        <h3>8.1 Closing the Haptic Feedback Loop</h3>
+        <p>
+          The next important step is to integrate the FSR output as a live PID process variable, whereby the massage
+          force applied by the student directly causes the boggy-to-firm transition in a realistic manner. The
+          therapeutic force threshold measured during the tests shall be used for this purpose. This single addition
+          will convert the current prototype from a passive simulator to a fully reactive simulator.
+        </p>
+      </div>
+
+      <div id="hardware-refinements">
+        <h3>8.2 Hardware Refinements</h3>
+        <p>
+          Some of the hardware refinements include: replacing the 9V battery with a 5V/12V DC power supply; replacing
+          the DC pump with a micro-pump to reduce the noise level; creating a silicone bladder with the anatomical
+          dimensions of a uterus, and creating a housing to house all the electronics within a body-form simulator.
+        </p>
+        <p>
+          To achieve a recovery time <0.5s, suitable for realistic continuous palpation at clinical frequencies, a
+          higher-capacity pump or dual-pump configuration should be investigated to ensure that the pneumatic system
+          maintains haptic fidelity, even during compressions.
+        </p>
+      </div>
+
+      <div id="expanded-validation">
+        <h3>8.3 Expanded Clinical Validation</h3>
+        <p>
+          The next level of clinical validation includes a blinded study with a group of Year 4 medical students at the
+          NUS faculty of medicine. Pre- and post-training confidence score tests for PPH uterine state identification
+          shall be conducted. Statistically significant therapeutic force thresholds shall be determined for a number of
+          clinical experts. The results shall be publishable in medical simulation or biomedical engineering journals.
+        </p>
+      </div>
+    </div>
+
+    <!-- ==================== REFERENCES ==================== -->
     <div id="references" class="references">
       <sl-divider></sl-divider>
       <h2>References</h2>
       <ul>
         <li>
-          Brody, J. E. (2007, December 11). Mental reserves keep brain agile. The New York Times. Retrieved from
-          http://www.dowjones.com/factiva/
+          [1] World Health Organization, "Operational Guidance: Prevention and Management of Postpartum Haemorrhage," 2024.
+          Available: <a href="https://platform.who.int/docs/default-source/mca-documents/policy-documents/operational-guidance/BRN-MN-32-03-OPERATIONALGUIDANCE-eng-Prevention-Management-PPH.pdf">WHO PPH Guidance</a>
         </li>
         <li>
-          Chamberlin, J., Novotney, A., Packard, E., & Price, M. (2008, May). Enhancing worker well-being: Occupational
-          health psychologists convene to share their research on work, stress, and health. Monitor on Psychology,
-          39(5), 26-29.
+          [2] L. Say et al., "Global causes of maternal death: a WHO systematic analysis," Lancet Glob Health, vol. 2, no. 6, pp. e323-33, Jun. 2014.
+          Available: <a href="https://pubmed.ncbi.nlm.nih.gov/25103301/">PubMed</a>
         </li>
         <li>
-          Jones, T. J., & Fields, N. (2003). Emotional quotient and personality. E-Journal of Applied Psychology, 2(2),
-          38-45. Retrieved from http://ejournalappliedpsyc/index.php/ejap
+          [3] F. G. Cunningham et al., Williams Obstetrics, 26th ed. New York, NY, USA: McGraw-Hill Education, 2022.
+        </li>
+        <li>
+          [4] MSD Manuals, "Postpartum Hemorrhage (PPH): Treatment," 2023.
+          Available: <a href="https://www.msdmanuals.com/professional/gynecology-and-obstetrics/intrapartum-complications/postpartum-hemorrhage#Treatment_v1075334">MSD Manuals</a>
+        </li>
+        <li>
+          [5] G. Carroli et al., "Epidemiology of postpartum haemorrhage: A systematic review," StatPearls, 2023.
+          Available: <a href="https://www.ncbi.nlm.nih.gov/books/NBK499988/">NCBI</a>
+        </li>
+        <li>
+          [6] Gaumard Scientific, "NOELLE® S575.100 Advanced Maternal and Neonatal Simulator."
+          Available: <a href="https://www.gaumard.com/s575-100">Gaumard</a>
+        </li>
+        <li>
+          [7] Laerdal Global Health, "MamaNatalie Birthing Simulator."
+          Available: <a href="https://shop.laerdalglobalhealth.com/product/mamanatalie/">Laerdal</a>
+        </li>
+        <li>
+          [8] GT Simulators, "Postpartum Hemorrhage Simulator (PPH Trainer P97 Pro)."
+          Available: <a href="https://www.gtsimulators.com/products/postpartum-hemorrhage-simulator-pph-trainer-p97-pro-p97p">GT Simulators</a>
+        </li>
+        <li>
+          [9] Limbs & Things, "PROMPT Flex PPH Module."
+          Available: <a href="https://limbsandthings.com/global/products/80101-postpartum-hemorrhage-module-prompt-flex">Limbs & Things</a>
+        </li>
+        <li>
+          [10] Ames Direct, "Understanding Shore Hardness."
+          Available: <a href="https://amesdirect.com.au/resources/understanding-shore-hardness/">Ames Direct</a>
         </li>
       </ul>
     </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== APPENDIX LINK ==================== -->
+    <div style="text-align: center; padding: 2rem 0;">
+      <h2 style="border-bottom: none; margin-bottom: 1rem;">Appendix</h2>
+      <p style="text-align: center; color: #4a5568; margin-bottom: 1.25rem;">
+        The appendix sections are available on a separate page.
+      </p>
+      <a href="appendix.html" style="display: inline-block; background: #2b6cb0; color: #fff; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s;">
+        View Appendix &rarr;
+      </a>
+    </div>
   </div>
 
-  <!-- This is the code to display the scroll to top button for ergonomic -->
-  <!-- You can leave it as it is, or if you don't like its aesthetics you can also just delete it, -->
-  <!-- but it might reduce the user experience. -->
+  <!-- Scroll to top button -->
   <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
     <sl-icon name="arrow-up" label="Settings"></sl-icon>
   </sl-button>

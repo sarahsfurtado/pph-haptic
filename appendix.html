@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Appendix — Pneumatic Haptic Simulator for PPH Uterine Tone Training</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+
+  <link rel="stylesheet" href="./index.css">
+
+  <script type="module" src="./components/image/image-component.js"></script>
+
+  <link rel="stylesheet" href="./components/scroll-to-top/scroll-to-top.css">
+  <script src="./components/scroll-to-top/scroll-to-top.js"></script>
+
+  <!-- Custom report styling (same as index.html) -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f9fa;
+      color: #2d3748;
+      line-height: 1.75;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem;
+      background: #ffffff;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      border-radius: 8px;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      border-bottom: 3px solid #2b6cb0;
+      padding-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #bee3f8;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #2c5282;
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+      text-align: justify;
+      font-size: 0.95rem;
+    }
+
+    /* Tables */
+    table {
+      margin: 0.75rem 0 1.5rem 0;
+      font-size: 0.9rem !important;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0 !important;
+    }
+    table thead tr {
+      background: #ebf4ff !important;
+    }
+    table th {
+      font-weight: 600;
+      color: #1a365d;
+      padding: 10px 14px !important;
+      border-color: #cbd5e0 !important;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    table td {
+      padding: 8px 14px !important;
+      border-color: #e2e8f0 !important;
+      vertical-align: top;
+    }
+    table tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+    table tbody tr:hover {
+      background: #edf2f7;
+    }
+    p > strong:first-child:last-child,
+    p:has(+ table) > strong {
+      display: block;
+      font-size: 0.9rem;
+      color: #4a5568;
+      margin-top: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Dividers */
+    sl-divider {
+      --spacing: 1.5rem;
+      --color: #e2e8f0;
+    }
+
+    /* Image placeholders */
+    image-component {
+      display: block;
+      margin: 1.25rem 0;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #2b6cb0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #1a365d;
+      text-decoration: underline;
+    }
+
+    /* Interview notes */
+    .interview-notes {
+      background: #f7fafc;
+      border-left: 4px solid #2b6cb0;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .interview-notes p {
+      font-size: 0.92rem;
+      color: #4a5568;
+      margin-bottom: 0.6rem;
+      text-align: left;
+    }
+    .interview-notes p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul.interview-list {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0 1rem 0;
+    }
+    ul.interview-list li {
+      font-size: 0.92rem;
+      color: #4a5568;
+      margin-bottom: 0.4rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <a href="index.html" class="back-link">&larr; Back to Report</a>
+
+    <h1>Appendix</h1>
+
+    <sl-divider></sl-divider>
+
+    <!-- ==================== APPENDIX A ==================== -->
+    <div id="appendix-a">
+      <h2>Appendix A: Interview with Clinician</h2>
+      <p>
+        This section contains the discussion from the primary investigations with Dr Arun, to identify user needs and
+        product specifications.
+      </p>
+
+      <h3>A.1 Initial Interview with Dr Arun conducted in Semester 1 (NUH)</h3>
+      <div class="interview-notes">
+        <p><strong>Dr Arun meeting notes:</strong></p>
+        <ul class="interview-list">
+          <li>No gaps except lack of practice</li>
+          <li>PROMPT only conducted twice a year</li>
+          <li>Every batch has a lot of solutions, Gap is there should be able to practice anytime everywhere</li>
+          <li>PPH happens once a month, not consistently.</li>
+          <li>PPH more common than shoulder dystocia</li>
+          <li>Undergraduate is more focused on PPH 10-15% marks for them, 5 years have 6 weeks of gynae posting → not
+            enough for phase 4/5 exam and needs to be revised</li>
+        </ul>
+      </div>
+
+      <h3>A.2 Haptic Interview with Dr Arun (NUH)</h3>
+      <div class="interview-notes">
+        <p><strong>What does a healthy uterus feel like:</strong></p>
+        <p>The same thing feels like a cricket ball under a yoga mat.</p>
+
+        <p><strong>What does a soft and boggy uterus feel like:</strong></p>
+        <p>It lacks the expected muscular resistance. Can be compared to a marshmallow, and not well toned.</p>
+
+        <p><strong>How is uterine atony diagnosed:</strong></p>
+        <p>
+          The pressure is applied at the level of the umbilicus, which is the weakest part making it the easiest for the
+          doctor to feel. If the uterus is normal, there will be an obvious stand out at the abdomen area. If not, it is
+          located high and there is a struggle to find it. Consistent, firm, horizontal pressure will be applied for
+          analysis.
+        </p>
+      </div>
+
+      <image-component tag="fig14" source="assets/Uterus_Position_DrArun.png"
+        subtitle="Figure 14: Uterus Position Illustrated by Dr Arun"></image-component>
+
+      <div class="interview-notes">
+        <p><strong>Are students able to apply the correct amount of pressure to determine hardness?</strong></p>
+        <p>They are not trained, this is a matter of experience. Not taught to students how much force to apply.</p>
+      </div>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== APPENDIX B ==================== -->
+    <div id="appendix-b">
+      <h2>Appendix B: Manual Bulb Inflation Method</h2>
+
+      <image-component tag="fig15" source="assets/Manual_Bulb_Pump.png"
+        subtitle="Figure 15: Pump used to replicate boggy/firm state conditions of uterus"></image-component>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- ==================== APPENDIX C ==================== -->
+    <div id="appendix-c">
+      <h2>Appendix C: Circuit Connections</h2>
+
+      <h3>C.1 DC Pump Connection</h3>
+      <image-component tag="figC1" source="assets/DC_Pump_Connection.png"
+        subtitle="Appendix C.1: DC Pump Connection Diagram"></image-component>
+
+      <h3>C.2 Table of Arduino Pin Connections</h3>
+
+      <p><strong>Table C.1: Arduino Pin Connections</strong></p>
+      <table border="1" cellpadding="8" cellspacing="0"
+        style="border-collapse: collapse; width: 100%; font-size: 0.95em;">
+        <thead>
+          <tr style="background-color: #f0f0f0;">
+            <th>Component</th>
+            <th>Component Pin</th>
+            <th>Arduino Pin</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="9"><strong>TB6612FNG (Logic)</strong></td>
+            <td>VCC</td>
+            <td>5V</td>
+            <td>Logic Power</td>
+          </tr>
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+            <td>Common Ground</td>
+          </tr>
+          <tr>
+            <td>PWMA</td>
+            <td>Pin 9</td>
+            <td>PWM Speed for DC Pump</td>
+          </tr>
+          <tr>
+            <td>AIN1</td>
+            <td>Pin 4</td>
+            <td>Direction 1 for DC Pump</td>
+          </tr>
+          <tr>
+            <td>AIN2</td>
+            <td>Pin 5</td>
+            <td>Direction 2 for DC Pump</td>
+          </tr>
+          <tr>
+            <td>PWMB</td>
+            <td>Pin 6</td>
+            <td>PWM Speed for Solenoid</td>
+          </tr>
+          <tr>
+            <td>BIN1</td>
+            <td>Pin 7</td>
+            <td>Direction 1 for Solenoid</td>
+          </tr>
+          <tr>
+            <td>BIN2</td>
+            <td>Pin 8</td>
+            <td>Direction 2 for Solenoid</td>
+          </tr>
+          <tr>
+            <td>STBY</td>
+            <td>Pin 10</td>
+            <td>Standby Control</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Air Pressure Sensor</strong></td>
+            <td>Pin 4 (Vdd)</td>
+            <td>5V</td>
+            <td>Sensor Power</td>
+          </tr>
+          <tr>
+            <td>Pin 3 (Vss)</td>
+            <td>GND</td>
+            <td>Sensor Ground</td>
+          </tr>
+          <tr>
+            <td>Pin 5 (OUT)</td>
+            <td>Analog A1</td>
+            <td>Pressure Signal Output</td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Power & Output</strong></td>
+            <td>VM</td>
+            <td>9V Battery (+)</td>
+            <td>Motor Power</td>
+          </tr>
+          <tr>
+            <td>GND</td>
+            <td>9V Battery (−)</td>
+            <td>Power Ground</td>
+          </tr>
+          <tr>
+            <td>Aout1 / Aout2</td>
+            <td>Pump Wires</td>
+            <td>DC Air Pump Output</td>
+          </tr>
+          <tr>
+            <td>Bout1 / Bout2</td>
+            <td>Solenoid Wires</td>
+            <td>Output to Valve</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+    <sl-divider></sl-divider>
+
+    <!-- Back to report link -->
+    <div style="text-align: center; padding: 1.5rem 0;">
+      <a href="index.html"
+        style="display: inline-block; background: #2b6cb0; color: #fff; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s;">
+        &larr; Back to Report
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll to top button -->
+  <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
+    <sl-icon name="arrow-up" label="Settings"></sl-icon>
+  </sl-button>
+</body>
+
+</html>
